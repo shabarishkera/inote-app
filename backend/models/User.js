@@ -17,4 +17,6 @@ unique:true
 
     }
   });
-  module.exports=monggose.model('user',userschema)
+const User=monggose.model('user',userschema);
+
+  module.exports=User;
