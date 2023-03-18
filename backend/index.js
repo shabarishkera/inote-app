@@ -3,12 +3,14 @@ const connectToMongo=require("./db")
 const express = require('express')
 connectToMongo();
 const mongoose  = require('mongoose');
-
+const bcrypt=require("bcryptjs");
 const { Schema } = mongoose;
 const app = express()
-const port = 5000
+const port = 5000;
 const User=require("./models/User")
  const Notes=require("./models/Notes")
+ var jwt = require('jsonwebtoken');
+var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
 app.use(express.json())
 app.get('/', (req, res) => {
   res.send('home')
@@ -41,12 +43,20 @@ app.listen(port, () => {
      }
      try
      {
+     const salt=bcrypt.genSaltSync (10);
+     var securepass= await bcrypt.hash(req.body.password,salt);
     user= await User.create({
       name: req.body.name,
-      password: req.body.password,
+      password: securepass,
       email: req.body.email,
     })
-    res.json({"ans":"sucecss"});
+   
+    const data={
+      user:user.id,
+
+    }
+    const jwtocken=jwt.sign(data,"hashingtocken")
+    res.json({jwtocken});
     // .then(user => res.json(user))
     // .catch(err=>{console.log(err);
     //   res.json({error:"enter unique email"})
