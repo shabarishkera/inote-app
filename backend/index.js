@@ -52,8 +52,7 @@ app.listen(port, () => {
     })
    
     const data={
-      user:user.id,
-
+      id:user.id,
     }
     const jwtocken=jwt.sign(data,"hashingtocken")
     res.json({jwtocken});
@@ -74,3 +73,35 @@ app.listen(port, () => {
     console.log(req.body);
     res.send("dfdf");
   })
+  app.post('/api/login',[
+    body('email').isEmail(),
+    body('password').isLength({ min: 5 })
+    
+   ], async(req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const {email,password}=req.body;
+    try
+    {
+let user= await User.findOne({email:req.body.email})
+if(!user)
+return res.status(400).json({errors:"user does not exits"});
+let passmatch=await bcrypt.compare(password,user.password);
+if(!passmatch)
+return res.status(400).json({errors:"passwordk does not math"});
+const data={
+  user:user.id,
+}
+const jwtocken=jwt.sign(data,"hashingtocken")
+    res.json({jwtocken});
+
+    }
+    catch (err)
+    {
+      console.error(error.message);
+      res.status(500).send("some error occured");
+   
+    }
+   });
