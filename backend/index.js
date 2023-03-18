@@ -1,15 +1,15 @@
 const { body, validationResult } = require('express-validator');
-const connectToMongo=require("./db")
+const connectToMongo = require("./db")
 const express = require('express')
 connectToMongo();
-const mongoose  = require('mongoose');
-const bcrypt=require("bcryptjs");
+const mongoose = require('mongoose');
+const bcrypt = require("bcryptjs");
 const { Schema } = mongoose;
 const app = express()
 const port = 5000;
-const User=require("./models/User")
- const Notes=require("./models/Notes")
- var jwt = require('jsonwebtoken');
+const User = require("./models/User")
+const Notes = require("./models/Notes")
+var jwt = require('jsonwebtoken');
 var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
 app.use(express.json())
 app.get('/', (req, res) => {
@@ -22,86 +22,82 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
- //messy code ...
- app.post('/api/auth',[
+//messy code ...
+app.post('/api/auth', [
   body('email').isEmail(),
   body('name').isLength({ min: 5 }),
   body('password').isLength({ min: 5 })
-  
- ], async(req, res) => {
- console.log(req.body)
+
+], async (req, res) => {
+  console.log(req.body)
   // const user=User(req.body);
   // user.save();
   // res.send("saved sucessfully ");
   const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-     let user= await User.findOne({email:req.body.email})
-     if (user){
-      return res.status(400).json({error:"userr alerady exits"})
-     }
-     try
-     {
-     const salt=bcrypt.genSaltSync (10);
-     var securepass= await bcrypt.hash(req.body.password,salt);
-    user= await User.create({
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  let user = await User.findOne({ email: req.body.email })
+  if (user) {
+    return res.status(400).json({ error: "userr alerady exits" })
+  }
+  try {
+    const salt = bcrypt.genSaltSync(10);
+    var securepass = await bcrypt.hash(req.body.password, salt);
+    user = await User.create({
       name: req.body.name,
       password: securepass,
       email: req.body.email,
     })
-   
-    const data={
-      id:user.id,
+
+    const data = {
+      id: user.id,
     }
-    const jwtocken=jwt.sign(data,"hashingtocken")
-    res.json({jwtocken});
+    const jwtocken = jwt.sign(data, "hashingtocken")
+    res.json({ jwtocken });
     // .then(user => res.json(user))
     // .catch(err=>{console.log(err);
     //   res.json({error:"enter unique email"})
     // })
   }
-  catch (error)
-  {
+  catch (error) {
     console.error(error.message);
     res.status(500).send("some error occured");
   }
 
-  })
+})
 
-  app.get('/api/notes', (req, res) => {
-    console.log(req.body);
-    res.send("dfdf");
-  })
-  app.post('/api/login',[
-    body('email').isEmail(),
-    body('password').isLength({ min: 5 })
-    
-   ], async(req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    const {email,password}=req.body;
-    try
-    {
-let user= await User.findOne({email:req.body.email})
-if(!user)
-return res.status(400).json({errors:"user does not exits"});
-let passmatch=await bcrypt.compare(password,user.password);
-if(!passmatch)
-return res.status(400).json({errors:"passwordk does not math"});
-const data={
-  user:user.id,
-}
-const jwtocken=jwt.sign(data,"hashingtocken")
-    res.json({jwtocken});
+app.get('/api/notes', (req, res) => {
+  console.log(req.body);
+  res.send("dfdf");
+})
+app.post('/api/login', [
+  body('email').isEmail(),
+  body('password').isLength({ min: 5 })
 
+], async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  const { email, password } = req.body;
+  try {
+    let user = await User.findOne({ email: req.body.email })
+    if (!user)
+      return res.status(400).json({ errors: "user does not exits" });
+    let passmatch = await bcrypt.compare(password, user.password);
+    if (!passmatch)
+      return res.status(400).json({ errors: "passwordk does not math" });
+    const data = {
+      user: user.id,
     }
-    catch (err)
-    {
-      console.error(error.message);
-      res.status(500).send("some error occured");
-   
-    }
-   });
+    const jwtocken = jwt.sign(data, "hashingtocken")
+    res.json({ jwtocken });
+
+  }
+  catch (err) {
+    console.error(error.message);
+    res.status(500).send("some error occured");
+
+  }
+});
