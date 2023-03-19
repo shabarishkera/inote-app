@@ -47,14 +47,13 @@ router.post('/', [
 
 })
 router.post("/userdata",fetchdata,async (req,res)=>{
-var userid=req.userid;
+var userid=req.user.id;
 try {
-
- const user= await User.findById(userid).select("-password");
+ const user= await User.findById(userid).select("-password")
  res.send(user)
 }
  catch (error) {
-    
+    return res.status(401).json({ error: "no one in that name" })
  }
 
 
