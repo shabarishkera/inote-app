@@ -7,50 +7,35 @@ const { Schema } = mongoose;
 const User = require("../models/User")
 const Notes = require("../models/Notes")
 var jwt = require('jsonwebtoken');
+var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
 router.post('/', [
     body('email').isEmail(),
-    body('name').isLength({ min: 5 }),
     body('password').isLength({ min: 5 })
   
   ], async (req, res) => {
-    console.log(req.body)
-    // const user=User(req.body);
-    // user.save();
-    // res.send("saved sucessfully ");
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    let user = await User.findOne({ email: req.body.email })
-    if (user) {
-      return res.status(400).json({ error: "userr alerady exits" })
-    }
+    const { email, password } = req.body;
     try {
-      const salt = bcrypt.genSaltSync(10);
-      var securepass = await bcrypt.hash(req.body.password, salt);
-      user = await User.create({
-        name: req.body.name,
-        password: securepass,
-        email: req.body.email,
-      })
-  
+      let user = await User.findOne({ email:req.body.email })
+      if (!user)
+        return res.status(400).json({ errors: "user does not exits" });
+      let passmatch = await bcrypt.compare(password, user.password);
+      if (!passmatch)
+        return res.status(400).json({ errors: "passwordk does not math" });
       const data = {
-        id: user.id,
+        user: user.id,
       }
       const jwtocken = jwt.sign(data, "hashingtocken")
       res.json({ jwtocken });
-      // .then(user => res.json(user))
-      // .catch(err=>{console.log(err);
-      //   res.json({error:"enter unique email"})
-      // })
+  
     }
-    catch (error) {
+    catch (err) {
       console.error(error.message);
       res.status(500).send("some error occured");
+  
     }
-  
-  })
-  
-
-
-module.exports=router;
+  });
+  module.exports=router;
