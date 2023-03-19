@@ -22,10 +22,3 @@ const loginroute=require("./routes/login")
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
-//messy code ...
-
-
-app.get('/api/notes', (req, res) => {
-  console.log(req.body);
-  res.send("dfdf");
-})
