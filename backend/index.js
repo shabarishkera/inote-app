@@ -14,10 +14,9 @@ app.get('/', (req, res) => {
 })
 const authroute=require("./routes/auth")
 const noteroute=require("./routes/notes")
-const loginroute=require("./routes/login")
  app.use('/auth' ,authroute);
  app.use('/notes',noteroute);
- app.use('/login',loginroute);
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
