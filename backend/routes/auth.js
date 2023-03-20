@@ -64,7 +64,7 @@ router.post('/login', [
       if (!passmatch)
         return res.status(400).json({ errors: "passwordk does not math" });
       const data = {
-        user: user.id,
+        id: user.id,
       }
       const jwtocken = jwt.sign(data, "hashingtocken")
       res.json({ jwtocken });
