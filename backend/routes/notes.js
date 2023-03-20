@@ -48,4 +48,47 @@ router.post("/addnote",fetchuserdata,[
 }
 
 })
+router.put("/updatenote/:id",fetchdata,async (req,res)=>{
+   
+  
+const {title,description}=req.body;
+const newnote={};
+if (title)
+newnote.title=title;
+if(description)
+newnote.description=description;
+console.log(req.params.id);
+//findign exact note to be updated and change it
+try { 
+let note= await Notes.findById(req.params.id);
+if(!note)
+return res.status(404).send("note not found");
+
+if(note.user!=req.user.id)
+return res.status(404).send("username mismathc");
+ 
+note=await Notes.findByIdAndUpdate(req.params.id,{$set:newnote})
+res.send(note);
+} catch (error) {
+        res.status(400).send("something went wrong in db aceess")
+}
+
+})
+router.delete("/deletenote/:id",fetchdata,async (req,res)=>{
+    
+
+    try {  
+let note= await Notes.findById(req.params.id);
+
+if(!note)
+return res.status(404).send("note not found");  
+if(note.user!=req.user.id)
+return res.status(404).send("username mismathc");
+ 
+note=await Notes.findByIdAndDelete(req.params.id);
+res.send({"note":"deletion succees",note:note});
+    } catch (error) {
+        res.status(400).send("error deleting note");
+    }
+})
 module.exports=router;
