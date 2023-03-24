@@ -40,6 +40,7 @@ router.post("/addnote",fetchuserdata,[
         title,description,
         user:req.user.id
     })
+
     const savednote=await note.save();
     res.send(savednote);
 } catch (error) {
