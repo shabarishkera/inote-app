@@ -15,3 +15,25 @@ i
 {
   cursor:pointer;
 }
+.desc
+{
+justify-self:center;
+height: 12rem;
+
+}
+.form-group ,.submit-btn
+{
+display: flex;
+align-items: center;
+justify-content: center;
+
+}
+.form-control
+{
+text-align: center;
+}
+.row
+{
+  text-align: center;
+
+  }

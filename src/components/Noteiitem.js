@@ -2,6 +2,7 @@ import React from 'react'
 
 export default function  (props) {
     const {item}=props;
+    console.log(item);
   return (
     <div className='col-md-3 '>
      <div className="card my-3" >
