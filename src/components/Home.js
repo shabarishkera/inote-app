@@ -4,7 +4,7 @@ import Notes from "./Notes"
 import AddNote from './AddNote';
 export default function Home() {
   return (
-    <div className='container'>
+    <div className='container '>
    
 <Notes></Notes>
 

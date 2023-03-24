@@ -19,6 +19,7 @@ i
 {
 justify-self:center;
 height: 12rem;
+background-color: antiquewhite;
 
 }
 .form-group ,.submit-btn
@@ -36,4 +37,25 @@ text-align: center;
 {
   text-align: center;
 
-  }
+}
+.title
+{
+height:50px;
+background-color: wheat;
+}
+
+body
+{
+background:linear-gradient(to right, #FEBA4F  , #E89149);
+}
+
+.icon-con
+{
+display: flex;
+justify-content:space-evenly;
+
+}
+.card-body
+{
+  background-color:whitesmoke
+}

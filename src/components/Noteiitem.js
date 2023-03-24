@@ -9,8 +9,10 @@ export default function  (props) {
   <div className="card-body">
     <h5 className="card-title">{item.title}</h5>
     <p className="card-text">{item.description}</p>
-    <i className="fa-solid fa-trash mx-2"></i>
+    <div className='icon-con'>
+    <i className="fa-solid fa-trash "></i>
     <i className="fa-solid fa-file-pen"></i>
+    </div>
   </div>
 </div>
     </div>
