@@ -25,7 +25,7 @@ const handlechange=(event)=>{
   </div>
   <div className="form-group">
     <label htmlFor="exampleInputEmail1"></label>
-    <input type="text"className="form-control desc my-2" id="text-desc" name='description' aria-describedby="emailHelp" placeholder="Decsription"   onChange={handlechange}/>
+    <textarea type="text"className="form-control desc my-2" id="text-desc" name='description' aria-describedby="emailHelp" placeholder="Decsription"   onChange={handlechange}></textarea>
   </div>
   <div className='submit-btn'>
   <button type="submit" className="btn btn-primary my-4" onClick={handleclick}>Submit</button>
