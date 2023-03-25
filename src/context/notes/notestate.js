@@ -3,7 +3,7 @@ import NoteContext from "./noteconstext";
 const NoteState=(props)=>{
 var nots=[
     {
-      "_id": "64180badc8cb09ff96aa81f5",
+      "_id": "64180bdc8cb09ff96aa81f5",
       "user": "64180b2525e3c2369c433f2d",
       "title": "jack dies",
       "description": "fddfdfd a description ",
@@ -11,7 +11,7 @@ var nots=[
       "__v": 0
     },
     {
-        "_id": "64180badc8cb09ff96aa81f5",
+        "_id": "64180bdc8cb09ff96aa81f5",
         "user": "64180b2525e3c2369c433f2d",
         "title": "jack dies",
         "description": "fddfdfd a description ",
@@ -19,7 +19,7 @@ var nots=[
         "__v": 0
       },
       {
-          "_id": "64180badc8cb09ff96aa81f5",
+          "_id": "64180badc8c09ff96aa81f5",
           "user": "64180b2525e3c2369c433f2d",
           "title": "jack dies",
           "description": "fddfdfd a description ",
@@ -27,7 +27,7 @@ var nots=[
           "__v": 0
         },
         {
-            "_id": "64180badc8cb09ff96aa81f5",
+            "_id": "64180badc8cb09ff6aa81f5",
             "user": "64180b2525e3c2369c433f2d",
             "title": "jack dies",
             "description": "fddfdfd a description ",
@@ -35,7 +35,7 @@ var nots=[
             "__v": 0
           },
           {
-              "_id": "64180badc8cb09ff96aa81f5",
+              "_id": "64180badc8cb09ff96a81f5",
               "user": "64180b2525e3c2369c433f2d",
               "title": "jack dies",
               "description": "fddfdfd a description ",
@@ -63,8 +63,14 @@ const addNote=(notee)=>
 }
 
 //delete note 
-const deleteNote=()=>
+const deleteNote=(id)=>
 {
+const newnote=notes.filter((item)=>{
+  return item._id!=id;
+
+
+})
+setNotes(newnote);
 
 }
 
