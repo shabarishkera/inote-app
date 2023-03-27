@@ -12,7 +12,7 @@ const NoteState = (props) => {
       headers:new Headers({
         "Content-Type": "application/json",
         'auth-tocken' :"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjAxNTVkOWQ4MDk1OTJhNDU4NGYzNiIsImlhdCI6MTY3OTgyNDIyMn0.fdTmn_PcDzqaSExSDyXl3cfpNilxjgzGjIDF9xHKRyk",
-        cors:"no-cors"
+       
       }),
     });
    const json= await response.json(); 
@@ -25,37 +25,34 @@ const NoteState = (props) => {
     //api to be used
     const response = await fetch(`${host}/notes/addnote/`, {
       method: "POST",
-      mode: "same-origin",
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'auth-tocken':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjAxNTVkOWQ4MDk1OTJhNDU4NGYzNiIsImlhdCI6MTY3OTgyNDIyMn0.fdTmn_PcDzqaSExSDyXl3cfpNilxjgzGjIDF9xHKRyk"
       },
       body: JSON.stringify({title,description})
     })
-    const json = response.json();
-    const note = {
-      "_id": "64180badc8cb09ff96aa81f5",
-      "user": "64180b2525e3c2369c433f2d",
-      "title": `${title}`,
-      "description": `${description}`,
-      "date": "2023-03-20T07:30:53.093Z",
-      "__v": 0
-    }
-
-    setNotes(notes.concat(note));
+    const json = await response.json();
+    console.log(json);
+    setNotes(notes.concat(json));
   }
 
   //delete note 
-  const deleteNote = (id) => {
+  const deleteNote =async (id) => {
     const newnote = notes.filter((item) => {
-      return item._id != id;
-
-
+      return item._id != id
     })
-    setNotes(newnote);
+    const response = await fetch(`${host}/notes/deletenote/${id}`, {
+      method: "DELETE",
+      headers:{
+        "Content-Type": "application/json",
+        'auth-tocken' :"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjAxNTVkOWQ4MDk1OTJhNDU4NGYzNiIsImlhdCI6MTY3OTgyNDIyMn0.fdTmn_PcDzqaSExSDyXl3cfpNilxjgzGjIDF9xHKRyk",    
+      },
+    })
+    const json = response.json();
+    setNotes(notes);
+    
 
   }
-
-
   //edit note
   const editNote = async (id, title, description) => {
     // api calls

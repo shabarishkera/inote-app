@@ -9,7 +9,7 @@ export default function  (props) {
     }
     const context=useContext(NoteContext);
     const {deleteNote}=context;
-   
+   const {updateNote}=props;
   return (
     <div className='col-md-3 '>
      <div className="card my-3" >
@@ -18,7 +18,7 @@ export default function  (props) {
     <p className="card-text">{item.description}</p>
     <div className='icon-con'>
     <i className="fa-solid fa-trash " onClick={handledelete} ></i>
-    <i className="fa-solid fa-file-pen"  onClick={()=>{}}></i>
+    <i className="fa-solid fa-file-pen"  onClick={updateNote}></i>
     </div>
   </div>
 </div>
