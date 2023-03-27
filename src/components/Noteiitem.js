@@ -9,7 +9,7 @@ export default function  (props) {
     }
     const context=useContext(NoteContext);
     const {deleteNote}=context;
-    console.log(item._id)
+   
   return (
     <div className='col-md-3 '>
      <div className="card my-3" >

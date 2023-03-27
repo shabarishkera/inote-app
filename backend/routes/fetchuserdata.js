@@ -18,6 +18,7 @@ const  fetchuserdata= async (req,res,next)=>
         
     }
 
+    
 }
 module.exports=fetchuserdata;
 

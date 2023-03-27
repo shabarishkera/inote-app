@@ -8,10 +8,9 @@ const fetchuserdata = require("./fetchuserdata");
 
 router.get("/fetchnotes",fetchdata,async (req,res)=>{
     try {
-        
-
 const notes= await Notes.find({user:req.user.id});
 res.json(notes)
+
     }
  catch (error)
  {
