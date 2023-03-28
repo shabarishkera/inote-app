@@ -3,6 +3,12 @@ import NoteContext from '../context/notes/noteconstext';
 
 export default function  (props) {
     const {item}=props;
+    const {updateNote}=props;
+    const updatenotewithin=()=>{
+
+      updateNote(item);
+
+    }
     const handledelete=()=>
     {
       deleteNote(item._id);
@@ -10,7 +16,7 @@ export default function  (props) {
     }
     const context=useContext(NoteContext);
     const {deleteNote}=context;
-   const {updateNote}=props;
+  
   return (
     <div className='col-md-3 '>
      <div className="card my-3" >
@@ -19,7 +25,7 @@ export default function  (props) {
     <p className="card-text">{item.description}</p>
     <div className='icon-con'>
     <i className="bi bi-trash-fill" onClick={handledelete}></i>
-    <i className="bi bi-pencil-square"  onClick={updateNote}></i>
+    <i className="bi bi-pencil-square"  onClick={updatenotewithin}></i>
     </div>
   </div>
 </div>

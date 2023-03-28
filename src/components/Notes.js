@@ -1,17 +1,25 @@
 import Noteitem from './Noteiitem';
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import NoteContext from '../context/notes/noteconstext';
 import AddNote from './AddNote';
 export default function Notes() {
-const {notes,getNotes}=useContext(NoteContext);
+const {notes,getNotes,editNote}=useContext(NoteContext);
 useEffect(()=>{
   getNotes();
 
 },[]);
+const handlechange=(event)=>{
+  setedit({...beingEdited,[event.target.name]:event.target.value});
+}
+const [beingEdited,setedit]=useState({_id:"",title:"",description:""})
 const newref=useRef(null);
-const updateNote=()=>{
-  console.log("button cliced");
-  console.log(newref.current)
+const updateNote=(item)=>{
+newref.current.click();
+setedit({_id:item._id,title:item.title,description:item.description});
+
+}
+const saveUpdatedNote=()=>{
+editNote(beingEdited._id,beingEdited.title,beingEdited.description)
 newref.current.click();
 }
   return (
@@ -31,16 +39,16 @@ newref.current.click();
       <div className="modal-body">
       <div className="form-group">
     <label htmlFor="exampleInputEmail1 title"></label>
-    <input type="text" className="form-control  title my-3" id="text-title" name="title" aria-describedby="emailHelp" placeholder="title"   />
+    <input type="text" className="form-control  title my-3" id="text-title" name="title" value={beingEdited.title} onChange={handlechange} aria-describedby="emailHelp" placeholder="title"   />
   </div>
   <div className="form-group">
     <label htmlFor="exampleInputEmail1"></label>
-    <textarea type="text"className="form-control desc my-2" id="text-desc" name='description' aria-describedby="emailHelp" placeholder="Decsription"   ></textarea>
+    <textarea type="text"className="form-control desc my-2" id="text-desc" name='description' value={beingEdited.description}  onChange={handlechange}  aria-describedby="emailHelp" placeholder="Decsription"   ></textarea>
   </div>
       </div>
       <div className="modal-footer">
         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" className="btn btn-primary">Save</button>
+        <button type="button" className="btn btn-primary" onClick={saveUpdatedNote}>Save</button>
       </div>
     </div>
   </div>
