@@ -19,7 +19,7 @@ i
 {
 justify-self:center;
 height: 12rem;
-background-color: antiquewhite;
+background-color:transparent;
 
 }
 .form-group ,.submit-btn
@@ -41,12 +41,16 @@ text-align: center;
 .title
 {
 height:50px;
-background-color: wheat;
+background-color:transparent;
+
 }
 
 body
 {
-background:linear-gradient(to right, #FEBA4F  , #E89149);
+background:url("./images/bg1.jpg");
+background-size:cover;
+background-repeat: no-repeat;
+background-attachment: fixed;
 }
 
 .icon-con
@@ -55,7 +59,28 @@ display: flex;
 justify-content:space-evenly;
 
 }
-.card-body
+.card-body,.card
 {
-  background-color:whitesmoke
+  background-color:transparent;
+  background: rgba(255,255,255,0.05);
+
+}
+.btn-danger
+{
+background-color: rgba(250,0,0,.15);
+
+}
+@media screen and (max-width: 400px) {
+  body 
+  {
+    background: url("./images/bg2.jpg");
+    background-size:cover;
+background-repeat: no-repeat;
+background-attachment: fixed;
+  
+}
+}
+.modal-btn
+{
+  display: none;
 }

@@ -15,32 +15,40 @@ const updateNote=()=>{
 newref.current.click();
 }
   return (
-  <>
-    <div>
-<button type="button" className="btn btn-primary" ref={newref} data-toggle="modal" data-target="#exampleModal">
+<>
+<button type="button" className="btn btn-primary modal-btn" data-bs-toggle="modal" ref={newref} data-bs-target="#exampleModal">
+  
 </button>
 
-<div className="modal fade" id="exampleModal"  tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div className="modal-dialog" role="document">
+
+<div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog">
     <div className="modal-content">
       <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalLabel">EDIT NOTE</h5>
-        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <h1 className="modal-title fs-5" id="exampleModalLabel">EDIT NOTE</h1>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div className="modal-body">
-        ...
+      <div className="form-group">
+    <label htmlFor="exampleInputEmail1 title"></label>
+    <input type="text" className="form-control  title my-3" id="text-title" name="title" aria-describedby="emailHelp" placeholder="title"   />
+  </div>
+  <div className="form-group">
+    <label htmlFor="exampleInputEmail1"></label>
+    <textarea type="text"className="form-control desc my-2" id="text-desc" name='description' aria-describedby="emailHelp" placeholder="Decsription"   ></textarea>
+  </div>
       </div>
       <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" className="btn btn-primary">Save changes</button>
+        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" className="btn btn-primary">Save</button>
       </div>
     </div>
   </div>
 </div>
-</div>
-    <div className='row my-3'>
+
+
+
+  <div className='row my-3'>
       
       <AddNote> </AddNote>
       <h2 className='my-3'>Your notes</h2>

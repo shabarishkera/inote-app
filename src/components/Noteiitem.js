@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import NoteContext from '../context/notes/noteconstext';
+
 export default function  (props) {
     const {item}=props;
     const handledelete=()=>
@@ -17,8 +18,8 @@ export default function  (props) {
     <h5 className="card-title">{item.title}</h5>
     <p className="card-text">{item.description}</p>
     <div className='icon-con'>
-    <i className="fa-solid fa-trash " onClick={handledelete} ></i>
-    <i className="fa-solid fa-file-pen"  onClick={updateNote}></i>
+    <i className="bi bi-trash-fill" onClick={handledelete}></i>
+    <i className="bi bi-pencil-square"  onClick={updateNote}></i>
     </div>
   </div>
 </div>
