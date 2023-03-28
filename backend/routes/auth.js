@@ -51,23 +51,25 @@ router.post('/login', [
     body('password').isLength({ min: 5 })
   
   ], async (req, res) => {
+    let success=false;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({ success, errors: errors.array() });
     }
     const { email, password } = req.body;
     try {
       let user = await User.findOne({ email:req.body.email })
       if (!user)
-        return res.status(400).json({ errors: "user does not exits" });
+        return res.status(400).json({success, errors: "user does not exits" });
       let passmatch = await bcrypt.compare(password, user.password);
       if (!passmatch)
-        return res.status(400).json({ errors: "passwordk does not math" });
+        return res.status(400).json({ success, errors: "passwordk does not math" });
       const data = {
         id: user.id,
       }
       const jwtocken = jwt.sign(data, "hashingtocken")
-      res.json({ jwtocken });
+      success=true;
+      res.json({ success,jwtocken });
   
     }
     catch (err) {

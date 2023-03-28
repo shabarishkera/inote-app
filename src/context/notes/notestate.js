@@ -6,7 +6,7 @@ const NoteState = (props) => {
   const getNotes = async() => {
    
     //api to be used
-  console.log("fetching data")
+  
     const response = await  fetch(`${host}/notes/fetchnotes`, {
       method: "GET",
       headers:new Headers({
@@ -21,7 +21,7 @@ const NoteState = (props) => {
   //add a note
   const addNote = async(notee) => {
     const { title, description } = notee;
-    console.log(title, description);
+   
     //api to be used
     const response = await fetch(`${host}/notes/addnote/`, {
       method: "POST",
@@ -32,7 +32,7 @@ const NoteState = (props) => {
       body: JSON.stringify({title,description})
     })
     const json = await response.json();
-    console.log(json);
+   
     setNotes(notes.concat(json));
   }
 
@@ -49,7 +49,7 @@ const NoteState = (props) => {
       },
     })
     const json = response.json();
-    setNotes(notes);
+    setNotes(newnote);
     
 
   }
@@ -67,17 +67,13 @@ const NoteState = (props) => {
     })
     const json = await response.json();
     const newnote=JSON.parse(JSON.stringify(notes));
-    console.log(title,description)
-   console.log(notes[0]._id)
-   console.log(id)
+   
     for (let i = 0; i < notes.length; i++) {
       if (newnote[i]._id == id) {
         newnote[i].title = title;
         newnote[i].description = description;
         break;
       }
-      
-    
     }
    
     setNotes(newnote);
@@ -87,12 +83,6 @@ const NoteState = (props) => {
     <NoteContext.Provider value={{ notes, setNotes, addNote, editNote, deleteNote,getNotes}}>
       {props.children}
     </NoteContext.Provider>
-
-
   )
-
-
-
 }
-
 export default NoteState;

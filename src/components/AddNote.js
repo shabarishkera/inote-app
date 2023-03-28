@@ -10,6 +10,7 @@ const [note,setNote]=useState({title:"",description:""});
 const handleclick=(e)=>{
   e.preventDefault();
   addNote(note);
+  setNote({title:"",description:""})
   
 }
 const handlechange=(event)=>{
@@ -21,14 +22,14 @@ const handlechange=(event)=>{
       <form>
   <div className="form-group">
     <label htmlFor="exampleInputEmail1 title"></label>
-    <input type="text" className="form-control  title my-3" id="text-title" name="title" aria-describedby="emailHelp" placeholder="title"  onChange={handlechange} />
+    <input type="text" className="form-control  title my-3" id="text-title" name="title" aria-describedby="emailHelp" placeholder="title" value={note.title} onChange={handlechange} />
   </div>
   <div className="form-group">
     <label htmlFor="exampleInputEmail1"></label>
-    <textarea type="text"className="form-control desc my-2" id="text-desc" name='description' aria-describedby="emailHelp" placeholder="Decsription"   onChange={handlechange}></textarea>
+    <textarea type="text"className="form-control desc my-2" id="text-desc" name='description' aria-describedby="emailHelp" placeholder="Description"  value={note.description}  onChange={handlechange}></textarea>
   </div>
   <div className='submit-btn'>
-  <button type="submit" className="btn btn-danger my-4" onClick={handleclick}>Save</button>
+  <button type="submit" disabled={note.title.length<3||note.description.length<5} className="btn btn-danger my-4" onClick={handleclick}>Save</button>
   </div>
 </form>
     </div>

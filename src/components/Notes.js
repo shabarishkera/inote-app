@@ -25,6 +25,7 @@ newref.current.click();
   return (
 <>
 <button type="button" className="btn btn-primary modal-btn" data-bs-toggle="modal" ref={newref} data-bs-target="#exampleModal">
+
   
 </button>
 
@@ -48,7 +49,7 @@ newref.current.click();
       </div>
       <div className="modal-footer">
         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" className="btn btn-primary" onClick={saveUpdatedNote}>Save</button>
+        <button type="button" className="btn btn-primary" onClick={saveUpdatedNote}  disabled={beingEdited.title.length<5||beingEdited.description.length<5} >Save</button>
       </div>
     </div>
   </div>

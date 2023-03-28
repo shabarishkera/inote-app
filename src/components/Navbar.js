@@ -23,6 +23,10 @@ export default function Navbar() {
         </li>
         
       </ul>
+      <form className='d-flex'>
+    <Link className="btn btn-primary " to="/login">login</Link >
+    <Link className="btn btn-primary mx-3" to="/signup">Sign up</Link>
+      </form>
      
     </div>
   </div>

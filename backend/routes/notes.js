@@ -57,7 +57,7 @@ if (title)
 newnote.title=title;
 if(description)
 newnote.description=description;
-console.log(req.params.id);
+
 //findign exact note to be updated and change it
 try { 
 let note= await Notes.findById(req.params.id);
