@@ -126,3 +126,9 @@ background-color:rgba(255,255,255,.15)
 {
 background-color:rgb(126, 126, 199);
 }
+.bi-person-circle
+{
+font-size:2rem;
+align-self: center;
+
+}

@@ -21,7 +21,6 @@ export default function Signup() {
        body:JSON.stringify(bodyobj)
      })
      const json = await response.json();
-     console.log(json)
      if(json.success)
      {
         

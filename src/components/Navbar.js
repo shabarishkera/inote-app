@@ -32,8 +32,12 @@ localStorage.removeItem("auth-tocken");
       <form className='d-flex'>
     <Link className="btn btn-primary " to="/login">login</Link >
     <Link className="btn btn-primary mx-3" to="/signup">Sign up</Link>
-      </form> :<button className='btn btn-primary' onClick={logout}>Logout</button>
-      
+    
+      </form> : <div className='fa-4x'>
+      <i class="bi bi-person-circle mx-3" > </i>
+        <button className='btn btn-primary ' onClick={logout}>Logout</button>
+    
+      </div>
 }
     </div>
   </div>

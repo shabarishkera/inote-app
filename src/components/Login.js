@@ -1,4 +1,4 @@
-import React, { Component, useState ,useRef}from 'react'
+import {React, useRef}from 'react'
 import { useNavigate } from "react-router-dom"
 
 export default function Login (){
@@ -11,8 +11,7 @@ const navigate=useNavigate();
       event.preventDefault();
      const bodyobj={"email":email.current.value,
      "password":password.current.value}
-     console.log(bodyobj)
-      console.log(password.current.value);
+    
       const response = await fetch(`${host}/auth/login`, {
         method: "POST",
         headers:{
@@ -21,7 +20,7 @@ const navigate=useNavigate();
         body:JSON.stringify(bodyobj)
       })
       const json = await response.json();
-      console.log(json)
+
       if(json.success)
       {
           //rediect all the trafic

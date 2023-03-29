@@ -9,9 +9,7 @@ const  fetchuserdata= async (req,res,next)=>
     }
     try {
         const id_obj= await jwt.verify(tocken,"hashingtocken");
-        
         req.user=id_obj;
-        console.log(req.user)
                 next();
     } catch (error) {
         res.status(400).send({errors:error.message});
