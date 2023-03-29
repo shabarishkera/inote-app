@@ -2,10 +2,16 @@ import Noteitem from './Noteiitem';
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import NoteContext from '../context/notes/noteconstext';
 import AddNote from './AddNote';
+import { useNavigate } from 'react-router-dom';
+
 export default function Notes() {
+  const navigator=useNavigate();
 const {notes,getNotes,editNote}=useContext(NoteContext);
 useEffect(()=>{
+  if(localStorage['auth-tocken'])
   getNotes();
+  else
+  navigator("/login");
 
 },[]);
 const handlechange=(event)=>{

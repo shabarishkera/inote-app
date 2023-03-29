@@ -14,15 +14,14 @@ router.post('/', [
     body('password').isLength({ min: 5 })
 
 ], async (req, res) => {
-    console.log(req.body)
-    
+  let success=false;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({ success,errors: errors.array() });
     }
     let user = await User.findOne({ email: req.body.email })
     if (user) {
-        return res.status(400).json({ error: "userr alerady exits" })
+        return res.status(400).json({success, error: "userr alerady exits" })
     }
     try {
         const salt = bcrypt.genSaltSync(10);
@@ -37,7 +36,8 @@ router.post('/', [
             id: user.id,
         }
         const jwtocken = jwt.sign(data, "hashingtocken")
-        res.json({ jwtocken });
+        success=true;
+        res.json({success, jwtocken });
         
     }
     catch (error) {

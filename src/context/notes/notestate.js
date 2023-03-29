@@ -11,7 +11,7 @@ const NoteState = (props) => {
       method: "GET",
       headers:new Headers({
         "Content-Type": "application/json",
-        'auth-tocken' :"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjAxNTVkOWQ4MDk1OTJhNDU4NGYzNiIsImlhdCI6MTY3OTgyNDIyMn0.fdTmn_PcDzqaSExSDyXl3cfpNilxjgzGjIDF9xHKRyk",
+        'auth-tocken' :localStorage['auth-tocken']
        
       }),
     });
@@ -27,7 +27,7 @@ const NoteState = (props) => {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
-        'auth-tocken':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjAxNTVkOWQ4MDk1OTJhNDU4NGYzNiIsImlhdCI6MTY3OTgyNDIyMn0.fdTmn_PcDzqaSExSDyXl3cfpNilxjgzGjIDF9xHKRyk"
+        'auth-tocken':localStorage['auth-tocken']
       },
       body: JSON.stringify({title,description})
     })
@@ -45,7 +45,7 @@ const NoteState = (props) => {
       method: "DELETE",
       headers:{
         "Content-Type": "application/json",
-        'auth-tocken' :"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjAxNTVkOWQ4MDk1OTJhNDU4NGYzNiIsImlhdCI6MTY3OTgyNDIyMn0.fdTmn_PcDzqaSExSDyXl3cfpNilxjgzGjIDF9xHKRyk",    
+        'auth-tocken' :localStorage['auth-tocken']   
       },
     })
     const json = response.json();
@@ -61,8 +61,7 @@ const NoteState = (props) => {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json',
-        'auth-tocken':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjAxNTVkOWQ4MDk1OTJhNDU4NGYzNiIsImlhdCI6MTY3OTgyNDIyMn0.fdTmn_PcDzqaSExSDyXl3cfpNilxjgzGjIDF9xHKRyk"
-      },
+        'auth-tocken':localStorage['auth-tocken']      },
       body: JSON.stringify({title,description})
     })
     const json = await response.json();

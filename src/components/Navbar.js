@@ -1,8 +1,15 @@
 import React from 'react'
-import {Link, useLocation} from "react-router-dom"
+import {Link, useLocation,useNavigate} from "react-router-dom"
 export default function Navbar() {
   var location=useLocation();
+  const navigate=useNavigate();
+  const logout=()=>
+  {
+localStorage.removeItem("auth-tocken");
+    navigate("/login")
+  }
   return (
+  
    
 <nav className="navbar navbar-expand-lg bg-body-tertiary bg-dark">
   <div className="container-fluid">
@@ -15,19 +22,19 @@ export default function Navbar() {
         <li className="nav-item">
           <Link  className={`nav-link ${location.pathname==='/'?'active':""}`}aria-current="page" to="/">Home</Link >
         </li>
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <Link  className={`nav-link ${location.pathname==='/about'?'active':""}`} to="/about">about</Link >
-        </li>
-        <li className="nav-item">
-          <Link  className={`nav-link ${location.pathname==='/login'?'active':""}`} to="/login">login</Link >
-        </li>
+        </li> */}
+       
         
       </ul>
+       {!localStorage['auth-tocken']?
       <form className='d-flex'>
     <Link className="btn btn-primary " to="/login">login</Link >
     <Link className="btn btn-primary mx-3" to="/signup">Sign up</Link>
-      </form>
-     
+      </form> :<button className='btn btn-primary' onClick={logout}>Logout</button>
+      
+}
     </div>
   </div>
 </nav>
