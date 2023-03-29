@@ -25,6 +25,7 @@ export default function Signup() {
      {
         
          localStorage.setItem("auth-tocken",json.jwtocken)
+         localStorage.setItem('inote-user',json.name);
        navigate("/")
      }
 

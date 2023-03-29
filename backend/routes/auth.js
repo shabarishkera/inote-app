@@ -16,7 +16,6 @@ router.post('/', [
 ], async (req, res) => {
 
   let success=false;
-  localStorage.setItem("inote-user",req.body.name);
       const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ success,errors: errors.array() });
@@ -39,7 +38,7 @@ router.post('/', [
         }
         const jwtocken = jwt.sign(data, "hashingtocken")
         success=true;
-        res.json({success, jwtocken });
+        res.json({ name:user.name,success, jwtocken });
         
     }
     catch (error) {
