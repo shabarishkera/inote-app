@@ -34,7 +34,8 @@ localStorage.removeItem("auth-tocken");
     <Link className="btn btn-primary mx-3" to="/signup">Sign up</Link>
     
       </form> : <div className='fa-4x'>
-      <i class="bi bi-person-circle mx-3" > </i>
+      <label  >  {localStorage['inote-user']} </label>  
+      <i className="bi bi-person-circle mx-3" > </i>
         <button className='btn btn-primary ' onClick={logout}>Logout</button>
     
       </div>

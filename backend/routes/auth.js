@@ -14,8 +14,10 @@ router.post('/', [
     body('password').isLength({ min: 5 })
 
 ], async (req, res) => {
+
   let success=false;
-    const errors = validationResult(req);
+  localStorage.setItem("inote-user",req.body.name);
+      const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ success,errors: errors.array() });
     }
@@ -67,9 +69,10 @@ router.post('/login', [
       const data = {
         id: user.id,
       }
+      
       const jwtocken = jwt.sign(data, "hashingtocken")
       success=true;
-      res.json({ success,jwtocken });
+      res.json({ name:user.name, success,jwtocken });
   
     }
     catch (err) {

@@ -5,7 +5,6 @@ const  fetchuserdata= async (req,res,next)=>
     if(!tocken)
     {
         res.status(401).send({errors:"no tocken"});
-
     }
     try {
         const id_obj= await jwt.verify(tocken,"hashingtocken");

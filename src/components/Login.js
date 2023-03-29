@@ -26,6 +26,8 @@ const navigate=useNavigate();
           //rediect all the trafic
           //save the auth tocken
           localStorage.setItem("auth-tocken",json.jwtocken)
+          localStorage.setItem("inote-user",json.name)
+        console.log(json.name)
         navigate("/")
       }
      
