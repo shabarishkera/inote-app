@@ -27,5 +27,6 @@ It correctly bundles React in production mode and optimizes the build for the be
 ![PREVIEW](public/prev4.png)<br/>
 ![PREVIEW](public/prev5.png)<br/>
 ![PREVIEW](public/prev3.png)<br/>
+### view on a mobile phone :
 ![PREVIEW](public/prev1.png)<br/>
 ![PREVIEW](public/prev2.png)<br/>

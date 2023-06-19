@@ -60,11 +60,7 @@ newref.current.click();
     </div>
   </div>
 </div>
-
-
-
   <div className='row my-3'>
-      
       <AddNote> </AddNote>
       <h2 className='my-3'>Your notes</h2>
 {notes.map((item,index)=>{
