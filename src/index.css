@@ -63,7 +63,7 @@ input:focus
 }
 body
 {
-background:url("./images/bg1.jpg");
+background:url("./images/bg2.jpg");
 background-size:cover;
 background-repeat: no-repeat;
 background-attachment: fixed;
@@ -92,7 +92,6 @@ background-color: rgba(250,0,0,.15);
     background-size:cover;
 background-repeat: no-repeat;
 background-attachment: fixed;
-  
 }
 }
 .modal-btn

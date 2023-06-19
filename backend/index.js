@@ -13,7 +13,9 @@ const corsOptions = {
     if (!origin || whitelist.indexOf(origin) !== -1) {
       callback(null, true)
     } else {
-      callback(new Error("Not allowed by CORS"))
+      callback(new Error("Not allowed by CORS"));
+      console.log("cors error");
+
     }
   },
   credentials: true,
@@ -31,5 +33,5 @@ const noteroute=require("./routes/notes")
 
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`App initionalzed ${port}`)
 })
